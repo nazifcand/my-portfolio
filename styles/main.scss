@@ -156,6 +156,10 @@ footer {
     &>span {
       color: #aaa;
     }
+
+    strong {
+      color: rgb(var(--main-color))
+    }
   }
 }
 
