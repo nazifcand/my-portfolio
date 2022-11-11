@@ -159,6 +159,21 @@ footer {
   }
 }
 
+#contact-me {
+  padding: 1rem 2rem;
+  background-color: rgb(var(--dark));
+  text-decoration: none;
+  font-family: var(--font);
+  color: #fff;
+  margin-top: 2rem;
+  width: fit-content;
+  transition: .5s opacity ease;
+
+  &:hover {
+    opacity: .8;
+  }
+}
+
 section {
   width: 100%;
 

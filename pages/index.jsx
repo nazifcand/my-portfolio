@@ -21,6 +21,8 @@ const IndexPage = (x) => {
           loop
         /></strong>
       </div>
+
+      <a href="mailto:nazifcandurgutt@gmail.com" id="contact-me">CONTACT ME</a>
     </div>
   </>
 }
