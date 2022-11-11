@@ -9,7 +9,7 @@ const Layout = ({ children }) => {
     <div id="content">
 
       <div id="me">
-        <img src="/me.jpg" alt="Nazif Can DURGUT" />
+        <img src="/me-min.jpg" alt="Nazif Can DURGUT" />
       </div>
 
       <div id="page-content">
