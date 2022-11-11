@@ -116,10 +116,11 @@ footer {
     font-size: 1.1rem;
     color: rgb(var(--color));
     opacity: .7;
-    transition: .5s opacity ease;
+    transition: .5s opacity ease, .5s color ease;
 
     &:hover {
       opacity: 1;
+      color: rgb(var(--main-color));
     }
   }
 }
