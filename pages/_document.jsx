@@ -6,6 +6,7 @@ export default function Document() {
     <Html lang='tr'>
       <Head>
         <link rel="stylesheet" href="/fontawesome5/css/all.min.css" />
+        <link rel="icon" type="image/png" href="/favicon.png" />
       </Head>
 
       <body>
