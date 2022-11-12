@@ -24,12 +24,77 @@ header,
 footer {
   width: 100%;
   height: 70px;
+  min-height: 70px;
   background-color: #fff;
   padding: 0 70px;
   box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+#mobile-menu {
+  font-size: 1.5rem;
+  opacity: .75;
+  display: none;
+  transition: .5s opacity ease;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.hide-scroll {
+  overflow: hidden
+}
+
+#mobile-nav {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(#fff, .85);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 1.5rem;
+
+  .nav-item {
+    &>a {
+      display: block;
+      padding: 1rem 2.5rem;
+      text-decoration: none;
+      color: rgb(var(--color));
+      transition: .5s color ease;
+      transition: .5s background-color ease;
+    }
+
+    &:hover {
+      &>a {
+        background-color: rgba(var(--main-color), .1);
+        color: rgb(var(--main-color));
+      }
+    }
+
+    &.active {
+      &>a {
+        background-color: rgb(var(--main-color));
+        color: #fff;
+      }
+    }
+
+    &.disabled {
+      &>a {
+        opacity: .5;
+        text-decoration: line-through;
+        pointer-events: none;
+        cursor: not-allowed;
+      }
+    }
+  }
 }
 
 #content {
@@ -64,6 +129,11 @@ footer {
 #logo {
   color: rgb(var(--color));
   text-decoration: none;
+
+  h1 {
+    margin: 0;
+    line-height: 1;
+  }
 
   span {
     color: rgb(var(--main-color))
@@ -215,6 +285,7 @@ section {
   display: flex;
   flex-wrap: wrap;
   column-gap: 1.5rem;
+  row-gap: 1.5rem;
 
   img {
     width: 35px;
@@ -224,3 +295,5 @@ section {
 .about-name {
   line-height: 1.5;
 }
+
+@import 'responsive'
