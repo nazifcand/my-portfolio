@@ -13,7 +13,9 @@ export default function Document() {
           src="https://www.googletagmanager.com/gtag/js?id=G-Y389N6FTVC"
           strategy="afterInteractive"
         />
-        <Script id="google-analytics" strategy="afterInteractive">
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive">
           {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){window.dataLayer.push(arguments);}
@@ -22,6 +24,11 @@ export default function Document() {
           gtag('config', 'G-Y389N6FTVC');
         `}
         </Script>
+
+        <Script
+          strategy="afterInteractive"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5106384346328058"
+          crossorigin="anonymous"></Script>
       </Head>
 
       <body>
