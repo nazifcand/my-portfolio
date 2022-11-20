@@ -5,7 +5,7 @@ import Section from '../components/Section'
 
 const PostPage = ({ posts }) => {
   return <>
-    <Section title='Son Yazılarım'>
+    <Section title='Last Posts'>
       <div id="list-posts">
         {posts.map(post => <Post key={post.id} post={post} />)}
       </div>
