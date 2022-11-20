@@ -10,7 +10,7 @@ const Header = () => {
   const pages = [
     { title: 'Home', path: '/', disabled: false },
     { title: 'About', path: '/about', disabled: false },
-    { title: 'Posts', path: '/posts', disabled: true },
+    { title: 'Posts', path: '/posts', disabled: false },
   ]
 
   const NavItem = ({ item }) => {
@@ -57,7 +57,6 @@ const Header = () => {
     </header>
 
     <MobileNav />
-
   </>
 }
 

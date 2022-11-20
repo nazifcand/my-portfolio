@@ -2,7 +2,7 @@ import Layout from "../layouts/default"
 import Typed from 'react-typed';
 import Head from "next/head";
 
-const IndexPage = (x) => {
+const IndexPage = () => {
   return <>
 
     <Head>

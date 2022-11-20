@@ -1,13 +1,26 @@
+import Post from "../components/Post"
 import Layout from "../layouts/default"
+import { fetchPosts } from "../services/post.service"
+import Section from '../components/Section'
 
-const PostPage = (x) => {
+const PostPage = ({ posts }) => {
   return <>
-    Post
+    <Section title='Son Yazılarım'>
+      <div id="list-posts">
+        {posts.map(post => <Post key={post.id} post={post} />)}
+      </div>
+    </Section>
   </>
 }
 
 export const getServerSideProps = async () => {
-  return { props: {} }
+  let [err, posts] = await fetchPosts()
+
+  if (err) {
+    posts = []
+  }
+
+  return { props: { posts } }
 }
 
 PostPage.getLayout = page => {
