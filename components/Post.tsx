@@ -1,23 +1,21 @@
 import classNames from 'classnames'
-import { DateTime } from 'luxon'
 import Link from 'next/link'
+import { CDN_URL } from '../constants'
+import { formatDate } from '../utils'
+
+const CategoryItem = ({ category }) => {
+  return <div className='category' style={{ backgroundColor: category.color }}> {category.title}</div>
+}
 
 const Post = ({ post }) => {
-
-  const date = new DateTime(post.updatedAt)
-
-  const CategoryItem = ({ category }) => {
-    return <div className='category' style={{ backgroundColor: category.color }}> {category.title}</div >
-  }
-
   return <div className={classNames({ 'post': true, [`post--${post.type}`]: true })} >
 
-    <div className="post-image">
-      <img src={post.thumbnail} alt={post.title} />
-    </div>
+    <Link href={`/posts/${post.slug}`} className="post-image">
+      <img src={`${CDN_URL}${post.thumbnail}`} alt={post.title} />
+    </Link>
 
     <div className="post-detail">
-      <time className="post-time">{date.toFormat('DDDD')}</time>
+      <time className="post-time">{formatDate(post.updatedAt)}</time>
       <Link className="post-title" href={`/posts/${post.slug}`}><h2>{post.title}</h2></Link>
       <div className="post-summary">{post.summary}</div>
       <div className="post-categories">

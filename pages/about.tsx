@@ -1,12 +1,35 @@
-import Layout from "../layouts/default"
-import Section from "../components/Section"
+import Layout from "@/layouts/default"
+import Section from "@/components/Section"
 import Head from "next/head"
+import { NextSeo } from "next-seo"
+import { CDN_URL, TITLE, URL } from "../constants"
 
 const AboutPage = () => {
   return <>
 
+    <NextSeo
+      title={TITLE}
+      description="Hi, i'am Nazif"
+      canonical={`${URL}/about`}
+      openGraph={{
+        url: `${URL}/about`,
+        title: TITLE,
+        description: "Hi, i'am Nazif",
+        images: [
+          {
+            url: `${CDN_URL}me-min.jpg`,
+          }
+        ],
+        siteName: TITLE,
+      }}
+      twitter={{
+        handle: '@nazifcand',
+        cardType: 'summary_large_image',
+      }}
+    />
+
     <Head>
-      <title>About Me | nazifcandurgut.dev</title>
+      <title>{`About Me | ${TITLE}`}</title>
     </Head>
 
     <div id="about-page">

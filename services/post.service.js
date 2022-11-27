@@ -6,3 +6,24 @@ export const fetchPosts = () => {
     .then(res => [null, res.data])
     .catch(err => [err])
 }
+
+export const fetchPost = (slug) => {
+  return request
+    .get(`/posts/${slug}`)
+    .then(res => [null, res.data])
+    .catch(err => [err])
+}
+
+export const createPost = (data) => {
+  return request
+    .post('/posts', data)
+    .then(res => [null, res.data])
+    .catch(err => [err])
+}
+
+export const removePost = (slug) => {
+  return request
+    .delete(`/posts/${slug}`)
+    .then(res => [null, res.data])
+    .catch(err => [err])
+}

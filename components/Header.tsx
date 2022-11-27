@@ -3,19 +3,25 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-const Header = () => {
+const DEFAULT_PAGES = [
+  { title: 'About', path: '/about', disabled: false },
+  { title: 'Posts', path: '/posts', disabled: false },
+  { title: 'Projects', path: '/projects', disabled: true },
+]
+
+const Header = ({ pages = DEFAULT_PAGES }) => {
   const [showMobileMenu, setShowMobileMenu] = useState(false)
 
   const router = useRouter()
-  const pages = [
-    { title: 'Home', path: '/', disabled: false },
-    { title: 'About', path: '/about', disabled: false },
-    { title: 'Posts', path: '/posts', disabled: false },
-  ]
 
   const NavItem = ({ item }) => {
-    return <div className={classNames({ 'nav-item': true, active: router.pathname == item.path, disabled: item.disabled })}>
-      <Link href={item.path}>{item.title}</Link>
+    return <div
+      className={classNames({
+        'nav-item': true,
+        active: router.pathname.startsWith(item.path),
+        disabled: item.disabled
+      })}>
+      <Link href={item.path} target={item.newTab ? '_blank' : '_self'}>{item.title}</Link>
     </div>;
   }
 

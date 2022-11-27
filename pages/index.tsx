@@ -1,16 +1,39 @@
-import Layout from "../layouts/default"
+import Layout from "@/layouts/default"
 import Typed from 'react-typed';
 import Head from "next/head";
+import { TITLE, CDN_URL, URL } from "../constants";
+import { NextSeo } from "next-seo";
 
 const IndexPage = () => {
   return <>
 
+    <NextSeo
+      title={TITLE}
+      description="Hi, i'am Nazif"
+      canonical={URL}
+      openGraph={{
+        url: URL,
+        title: TITLE,
+        description: "Hi, i'am Nazif",
+        images: [
+          {
+            url: `${CDN_URL}me-min.jpg`,
+          }
+        ],
+        siteName: TITLE,
+      }}
+      twitter={{
+        handle: '@nazifcand',
+        cardType: 'summary_large_image',
+      }}
+    />
+
     <Head>
-      <title>nazifcandurgut.dev</title>
+      <title>{TITLE}</title>
     </Head>
 
     <div id="index-page">
-      <h2 id="name">Nazif Can DURGUT</h2>
+      <h2 id="name">{TITLE}</h2>
 
       <div id="iam">
         <span>{"I'm a "}</span>
