@@ -3,7 +3,7 @@ export const TITLE = 'Nazif Can DURGUT';
 
 export const URL = 'https://nazifcandurgut.dev';
 
-export const CDN_URL = 'http://localhost:8000/images';
+export const CDN_URL = 'https://api.nazifcandurgut.dev/images';
 
 export const SOCIAL_MEDIAS = [
   {
