@@ -4,9 +4,9 @@ import Alert from '@/components/Alert';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useEffect, useState } from 'react';
-import { createPost } from '@/services/post.service';
+import { updatePost, fetchPost } from '@/services/post.service';
 import { useRouter } from 'next/router';
-import { POST_TYPES, POST_STATUSES } from '../../../constants';
+import { POST_TYPES, POST_STATUSES } from '../../../../constants';
 import { fetchCategories } from '@/services/category.service';
 import 'react-markdown-editor-lite/lib/index.css';
 import PreviewMarkdown from '@/components/PreviewMarkdown';
@@ -14,6 +14,7 @@ import Editor from 'react-markdown-editor-lite';
 import Gallery from '@/components/Gallery';
 
 const NewPostPage = () => {
+  const [post, setPost] = useState({ image: '' });
   const [loading, setLoading] = useState(false);
   const [content, setContent] = useState('');
   const [categories, setCategories] = useState([]);
@@ -27,20 +28,20 @@ const NewPostPage = () => {
       status: 'draft',
       type: 'article',
       videoId: '',
-      categories: [],
       imageId: null,
+      categories: [],
     },
     validationSchema: Yup.object({
       title: Yup.string().required(),
       summary: Yup.string().required().min(150),
       status: Yup.string().required(),
       type: Yup.string().required(),
-      videoId: Yup.string(),
+      videoId: Yup.string().nullable(),
       categories: Yup.array().of(Yup.number()),
     }),
     onSubmit: async (values) => {
       setLoading(true);
-      const [err, result] = await createPost({
+      const [err, result] = await updatePost(router.query.slug, {
         ...values,
         content,
         categories: values.categories.map(Number),
@@ -63,6 +64,15 @@ const NewPostPage = () => {
       const [err, result] = await fetchCategories();
       if (err) return;
       setCategories(result);
+
+      const [postErr, fetchedPost] = await fetchPost(router.query.slug);
+      if (err) return;
+      formik.setValues({
+        ...fetchedPost,
+        categories: fetchedPost.categories.map((i) => i.id),
+      });
+      setPost(fetchedPost);
+      setContent(fetchedPost.content);
     })();
   }, []);
 
@@ -77,7 +87,7 @@ const NewPostPage = () => {
 
   return (
     <div className="wrapper">
-      <PageHeader title="New Post" children={''} />
+      <PageHeader title="EDIT POST" children={''} />
 
       {errors.map((error, index) => (
         <Alert key={index} color="danger" text={error} />
@@ -85,7 +95,10 @@ const NewPostPage = () => {
 
       <form onSubmit={formik.handleSubmit}>
         <div className="group">
-          <Gallery onSelect={(image) => handleOnSelectGallery(image)} />
+          <Gallery
+            onSelect={(image) => handleOnSelectGallery(image)}
+            image={post.image}
+          />
         </div>
 
         <div className="group">

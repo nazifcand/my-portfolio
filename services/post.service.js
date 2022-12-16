@@ -27,3 +27,10 @@ export const removePost = (slug) => {
     .then(res => [null, res.data])
     .catch(err => [err])
 }
+
+export const updatePost = (slug, data) => {
+  return request
+    .put(`/posts/${slug}`, data)
+    .then(res => [null, res.data])
+    .catch(err => [err])
+}

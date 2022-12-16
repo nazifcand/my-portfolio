@@ -3,7 +3,7 @@ import { fetchPosts, removePost } from '@/services/post.service';
 import AdminLayout from '@/layouts/admin';
 import DataTable from '@/components/DataTable';
 import { formatDate } from 'utils';
-import { POST_STATUSES, POST_TYPES, URL } from '../../../constants';
+import { CDN_URL, POST_STATUSES, POST_TYPES, URL } from '../../../constants';
 import Link from 'next/link';
 
 const PostsIndex = () => {
@@ -12,11 +12,24 @@ const PostsIndex = () => {
 
   const tableColumns = [
     {
+      title: 'IMAGE',
+      value: (row) => {
+        return (
+          <div className="image-preview">
+            <i className="fal fa-image"></i>
+            <img src={`${CDN_URL}/${row.image.filename}`} alt="" />
+          </div>
+        );
+      },
+    },
+    {
       title: 'TITLE',
       value: (row) => (
-        <a href={`${URL}/posts/${row.slug}`} target="_blank" rel="noreferrer">
-          {row.title}
-        </a>
+        <>
+          <a href={`${URL}/posts/${row.slug}`} target="_blank" rel="noreferrer">
+            {row.title}
+          </a>
+        </>
       ),
     },
     {
@@ -112,7 +125,7 @@ const PostsIndex = () => {
   }, []);
 
   const handleRemove = async (post) => {
-    if (!confirm(`Bak siliyom, gidiyor <b>${post.title}</b> içeriği`)) return;
+    if (!confirm(`Bak siliyom, gidiyor ${post.title} içeriği`)) return;
     const [err, result] = await removePost(post.slug);
     if (err) return;
     setPosts((prevValue) => posts.filter((item) => item.id != post.id));
