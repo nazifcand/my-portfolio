@@ -8,9 +8,14 @@ import { setUser, setLogin } from '../reducers/main.reducer';
 import { useDispatch } from 'react-redux';
 
 const ADMIN_PAGES = [
-  { title: 'Posts', path: '/co/posts' },
-  { title: 'Categories', path: '/co/categories' },
-  { title: <i className="fal fa-eye"></i>, path: `${URL}`, newTab: true },
+  { title: 'Posts', path: '/co/posts', disabled: false },
+  { title: 'Categories', path: '/co/categories', disabled: false },
+  {
+    title: 'Gör',
+    path: `${URL}`,
+    newTab: true,
+    disabled: false,
+  },
 ];
 
 const AdminLayout = ({ children }) => {
