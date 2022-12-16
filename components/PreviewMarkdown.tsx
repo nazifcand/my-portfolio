@@ -1,6 +1,12 @@
 import { useEffect } from 'react';
 import * as showdown from 'showdown';
 
+declare global {
+  interface Window {
+    hljs?: any;
+  }
+}
+
 const PreviewMarkdown = ({ source }) => {
   const converter = new showdown.Converter();
 
